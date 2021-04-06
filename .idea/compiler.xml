@@ -11,12 +11,14 @@
         <module name="demo" />
         <module name="shiro" />
         <module name="boot-shiro" />
+        <module name="netty-demo" />
         <module name="juc" />
-        <module name="nio" />
         <module name="understand-java-web" />
+        <module name="io-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="netty-demo" target="1.8" />
       <module name="spring-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>

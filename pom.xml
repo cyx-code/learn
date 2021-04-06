@@ -10,7 +10,7 @@
     <modules>
         <module>shiro</module>
         <module>boot-shiro</module>
-        <module>nio</module>
+        <module>io-demo</module>
         <module>juc</module>
         <module>understand-java-web</module>
         <module>design-pattern</module>
