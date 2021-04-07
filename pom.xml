@@ -8,12 +8,11 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>shiro</module>
-        <module>boot-shiro</module>
         <module>io-demo</module>
         <module>juc</module>
-        <module>understand-java-web</module>
         <module>design-pattern</module>
+        <module>data-structure</module>
+        <module>netty-demo</module>
     </modules>
 
     <name>learn</name>
