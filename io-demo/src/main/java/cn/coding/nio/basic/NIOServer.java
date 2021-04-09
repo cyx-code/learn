@@ -29,7 +29,7 @@ public class NIOServer {
         while (true) {
             // 阻塞1秒，如果没有连接事件
             if (selector.select(1000) == 0) {
-                System.out.println("wait 1 second");
+                System.out.println("wait for client connect");
                 continue;
             }
             // 获取到相关的selectionKey集合，事件发生的key
@@ -39,9 +39,11 @@ public class NIOServer {
             while (iterator.hasNext()) {
                 SelectionKey selectionKey = iterator.next();
                 if (selectionKey.isAcceptable()) {
+                    System.out.println("client connect success!");
                     // 处理连接事件
                     // 得到socketChannel
                     SocketChannel socketChannel = serverSocketChannel.accept();
+                    socketChannel.configureBlocking(false);
                     // 将socketChannel注册到selector上，事件为OP_READ，同时关联一个buffer
                     socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
                 }
@@ -51,7 +53,7 @@ public class NIOServer {
                     // 获取该channel管理的buffer
                     ByteBuffer buffer = (ByteBuffer) selectionKey.attachment();
                     socketChannel.read(buffer);
-                    System.out.println("client accept data is " + new String(buffer.array()));
+                    System.out.println("server accept data is " + new String(buffer.array()));
                 }
                 // 将集合中的selectionKey删除
                 iterator.remove();
