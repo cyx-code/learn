@@ -35,7 +35,7 @@ public class Server {
     }
     public void start() throws Exception {
         while (true) {
-            // 调用阻塞的seletor，等待selector上注册的事件发生
+            // 调用阻塞的selector，等待selector上注册的事件发生
             this.selector.select();
             // 获取就绪事件
             Iterator<SelectionKey> iterator = this.selector.selectedKeys().iterator();
