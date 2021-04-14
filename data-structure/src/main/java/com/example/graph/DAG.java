@@ -78,7 +78,7 @@ public class DAG<Node, NodeInfo> {
     private void addEdge(Node fromNode, Node toNode, Map<Node, Set<Node>> edges) {
         edges.putIfAbsent(fromNode, new HashSet<>());
         Set<Node> toNodes = edges.get(fromNode);
-        toNodes.add(fromNode);
+        toNodes.add(toNode);
 
     }
 
@@ -122,7 +122,7 @@ public class DAG<Node, NodeInfo> {
      * @author chenyuxiang
      * @date 2021/4/14 10:06 下午
      */
-    private Iterable<? extends Node> getSubsequentNodes(Node node) {
+    public Iterable<? extends Node> getSubsequentNodes(Node node) {
         lock.readLock().lock();
         try {
             return getNeighborNode(node, edges);
@@ -131,6 +131,21 @@ public class DAG<Node, NodeInfo> {
         }
     }
 
+    /**
+     * @Description: 获取前置节点信息
+     * @param node
+     * @return java.lang.Iterable<? extends Node>
+     * @author chenyuxiang
+     * @date 2021/4/14 10:16 下午
+     */
+    public Iterable<? extends Node> getPostNodes(Node node) {
+        lock.readLock().lock();
+        try {
+            return getNeighborNode(node, reverseEdges);
+        } finally {
+            lock.readLock().unlock();
+        }
+    }
     /**
      * @Description: 获取相连节点集合
      * @param node
